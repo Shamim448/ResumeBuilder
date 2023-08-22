@@ -340,7 +340,7 @@ a{
 
 /* resume page */
 #about-sc{
-    padding: 64px 0;
+    padding: 10px 0;
 }
 
 .cv-form-row-title{
@@ -355,6 +355,19 @@ a{
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-size: 1.7rem;
+}
+.cv-form-row-title a {
+    color: var(--clr-white);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 1.7rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+.cv-form-row-title a:hover {
+    text-decoration: none;
+    cursor: pointer;
 }
 .cv-form-blk{
     margin: 3rem 0;
@@ -433,6 +446,7 @@ textarea{
     grid-template-columns: 32% auto;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     overflow: hidden;
+    margin-top:30px;
 }
 
 .preview-cnt-l{
