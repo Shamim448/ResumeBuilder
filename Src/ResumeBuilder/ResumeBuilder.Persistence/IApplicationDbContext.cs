@@ -10,6 +10,6 @@ namespace ResumeBuilder.Persistence
 {
     public interface IApplicationDbContext
     {
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
