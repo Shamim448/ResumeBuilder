@@ -12,6 +12,10 @@ namespace ResumeBuilder.Persistence
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
         //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
