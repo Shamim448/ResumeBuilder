@@ -44,7 +44,28 @@ namespace ResumeBuilder.Web.Controllers
             }
             return View(model);
         }
+        //------------login---------------
+        public IActionResult Login()
+        {
+            return View();
+        }
 
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginAsync(LoginVM model)
+        {
+            if (ModelState.IsValid)
+            {
+               var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            }
+            return View(model);
+        }
+
+        //---------------Logout------------
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
