@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ResumeBuilder.Web.Models;
 
 namespace ResumeBuilder.Web.Controllers
 {
+
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -15,11 +17,13 @@ namespace ResumeBuilder.Web.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
+
         public IActionResult Register()
         {
             return View();
         }
         [HttpPost, ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Register(RegisterVM model)
         {
             if (ModelState.IsValid)
@@ -51,14 +55,24 @@ namespace ResumeBuilder.Web.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> LoginAsync(LoginVM model)
         {
+            model.ReturnUrl ??= Url.Content("~/");
             if (ModelState.IsValid)
             {
                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (!string.IsNullOrEmpty(model.ReturnUrl))
+                    {
+                        return LocalRedirect(model.ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    
                 }
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             }

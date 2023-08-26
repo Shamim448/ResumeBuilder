@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,15 @@ namespace ResumeBuilder.Persistence.Extentions
 
             })
             .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            ////Global Authorization policy
+            //services.AddMvc(config =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder()
+            //                .RequireAuthenticatedUser()
+            //                .Build();
+            //    config.Filters.Add(new AuthorizeFilter(policy));
+            //});
         }
     }
 }
