@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using ResumeBuilder.Application;
+using ResumeBuilder.Application.Features.Resume.Repositories;
+using ResumeBuilder.Persistence.Features.Resume.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +31,16 @@ namespace ResumeBuilder.Persistence
                 .WithParameter("connectionString", _connectionString)
                 .WithParameter("migrationAssembly", _migrationAssembly)
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
+.InstancePerLifetimeScope();
+
+            builder.RegisterType<EducationRepository>().As<IEducationRepository>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<AboutUsRepository>().As<IAboutUsRepository>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<CVTemplateRepository>().As<ICVTemplateRepository>()
+               .InstancePerLifetimeScope();
 
         }
     }
