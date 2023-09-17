@@ -1,12 +1,7 @@
 ﻿using Autofac;
 using ResumeBuilder.Application;
 using ResumeBuilder.Application.Features.Resume.Repositories;
-using ResumeBuilder.Persistence.Features.Resume.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ResumeBuilder.Persistence
 {
@@ -33,13 +28,12 @@ namespace ResumeBuilder.Persistence
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
-.InstancePerLifetimeScope();
+                .InstancePerLifetimeScope();
 
             builder.RegisterType<EducationRepository>().As<IEducationRepository>()
                 .InstancePerLifetimeScope();
-            builder.RegisterType<AboutUsRepository>().As<IAboutUsRepository>()
-                .InstancePerLifetimeScope();
-            builder.RegisterType<CVTemplateRepository>().As<ICVTemplateRepository>()
+
+            builder.RegisterType<ApplicantRepository>().As<IApplicantRepository>()
                .InstancePerLifetimeScope();
 
         }

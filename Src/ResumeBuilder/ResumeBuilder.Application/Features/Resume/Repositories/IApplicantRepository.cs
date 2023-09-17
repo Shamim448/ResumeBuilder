@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ResumeBuilder.Application.Features.Resume.Repositories
 {
-    public interface ICVTemplateRepository : IRepositoryBase<CVTemplate, Guid>
+    public interface IApplicantRepository : IRepositoryBase<Applicant, Guid>
     {
     }
 }

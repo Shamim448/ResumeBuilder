@@ -1,12 +1,15 @@
 ﻿
 
 
+using ResumeBuilder.Application.Features.Resume.Repositories;
+using ResumeBuilder.Domain.Entities;
 using ResumeBuilder.Domain.UnitOfWorks;
 
 namespace ResumeBuilder.Application
 {
     public interface IApplicationUnitOfWork : IUnitOfWork
     {
-        //ICourseRepository Courses { get; }
+        IApplicantRepository Applicants { get; }
+        IEducationRepository Educations { get; }
     }
 }

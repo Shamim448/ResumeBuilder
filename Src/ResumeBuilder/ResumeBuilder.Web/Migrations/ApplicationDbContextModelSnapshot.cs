@@ -220,49 +220,7 @@ namespace ResumeBuilder.Web.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ResumeBuilder.Domain.Entities.CVTemplate", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CVTemplates");
-                });
-
-            modelBuilder.Entity("ResumeBuilder.Domain.Entities.ListType.Education", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double?>("CGPA")
-                        .HasColumnType("float");
-
-                    b.Property<Guid>("CVTemplateId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Degree")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("GraduationYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Institution")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MajorField")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CVTemplateId");
-
-                    b.ToTable("Educations");
-                });
-
-            modelBuilder.Entity("ResumeBuilder.Domain.Entities.SectionType.AboutUs", b =>
+            modelBuilder.Entity("ResumeBuilder.Domain.Entities.Applicant", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -270,9 +228,6 @@ namespace ResumeBuilder.Web.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CVTemplateId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Designation")
                         .HasColumnType("nvarchar(max)");
@@ -297,10 +252,41 @@ namespace ResumeBuilder.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CVTemplateId")
-                        .IsUnique();
+                    b.ToTable("Applicants");
+                });
 
-                    b.ToTable("AboutUs");
+            modelBuilder.Entity("ResumeBuilder.Domain.Entities.ListType.Education", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ApplicantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Degree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Institution")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicantId");
+
+                    b.ToTable("Educations");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -356,30 +342,17 @@ namespace ResumeBuilder.Web.Migrations
 
             modelBuilder.Entity("ResumeBuilder.Domain.Entities.ListType.Education", b =>
                 {
-                    b.HasOne("ResumeBuilder.Domain.Entities.CVTemplate", "CVTemplate")
+                    b.HasOne("ResumeBuilder.Domain.Entities.Applicant", "Applicant")
                         .WithMany("Educations")
-                        .HasForeignKey("CVTemplateId")
+                        .HasForeignKey("ApplicantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CVTemplate");
+                    b.Navigation("Applicant");
                 });
 
-            modelBuilder.Entity("ResumeBuilder.Domain.Entities.SectionType.AboutUs", b =>
+            modelBuilder.Entity("ResumeBuilder.Domain.Entities.Applicant", b =>
                 {
-                    b.HasOne("ResumeBuilder.Domain.Entities.CVTemplate", "CVTemplate")
-                        .WithOne("AboutUsSection")
-                        .HasForeignKey("ResumeBuilder.Domain.Entities.SectionType.AboutUs", "CVTemplateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CVTemplate");
-                });
-
-            modelBuilder.Entity("ResumeBuilder.Domain.Entities.CVTemplate", b =>
-                {
-                    b.Navigation("AboutUsSection");
-
                     b.Navigation("Educations");
                 });
 #pragma warning restore 612, 618

@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 namespace ResumeBuilder.Application.Features.Resume.Repositories
 {
    
-    public class CVTemplateRepository : Repository<CVTemplate, Guid>, ICVTemplateRepository
+    public class ApplicantRepository : Repository<Applicant, Guid>, IApplicantRepository
     {
-        public CVTemplateRepository(IApplicationDbContext dbContext)
+        public ApplicantRepository(IApplicationDbContext dbContext)
             : base((DbContext)dbContext)
         {
         }
