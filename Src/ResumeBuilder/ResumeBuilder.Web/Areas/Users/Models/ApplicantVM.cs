@@ -16,8 +16,9 @@ namespace ResumeBuilder.Web.Areas.Users.Models
         public string? FName { get; set; }
         
         [StringLength(150)]
-        [DisplayName("Middle Name")]
+        [DisplayName("Middle Name (Optional)")]
         public string? MName { get; set; }
+
         [Required]
         [StringLength(150)]
         [DisplayName("Last Name")]
@@ -54,9 +55,14 @@ namespace ResumeBuilder.Web.Areas.Users.Models
             _resumeBuilderService = scope.Resolve<IResumeBuilderService>();
            
         }
-        public IList<Applicant> GetApplicants()
+        internal IList<Applicant> GetApplicants()
         {
             return _resumeBuilderService.GetAllApplicant();
+        }
+
+        public void CreateResume()
+        {
+            _resumeBuilderService.CreateAResume(FName,MName, LName, Designation,Address, Email, PhoneNo, Summary, Educations);
         }
     }
 }

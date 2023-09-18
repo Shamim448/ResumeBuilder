@@ -31,16 +31,23 @@ namespace ResumeBuilder.Web.Areas.Users.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            Applicant applicant = new Applicant();
-            applicant.Educations.Add(new Education() { Id = new Guid("7D688CCB-624A-46A4-AB08-24E0795B947B") });
-            return View(applicant);
+            var model = _scope.Resolve<ApplicantVM>();
+            //ApplicantVM applicant = new ApplicantVM();
+            //applicant.Educations.Add(new Education() { Id = new Guid("7D688CCB-624A-46A4-AB08-24E0795B947B") });
+            return View(model);
         }
         [HttpPost]
-        public IActionResult Create(Applicant applicant)
+        public IActionResult Create(ApplicantVM model)
         {
+            if (ModelState.IsValid)
+            {
+                model.CreateResume();
+            }
+            
             
            return RedirectToAction("Index", "Home");    
         }
+
         public IActionResult ResumeBuilder()
         {
             return View();

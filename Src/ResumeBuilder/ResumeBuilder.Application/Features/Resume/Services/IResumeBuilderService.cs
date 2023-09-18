@@ -10,6 +10,10 @@ namespace ResumeBuilder.Application.Features.Resume.Services
 {
     public interface IResumeBuilderService
     {
+        
+
+        void CreateAResume(string fname, string mname, string lname, string Designation,
+            string Address, string Email, string Phone, string summary, IList<Education> educations);
         IList<Applicant> GetAllApplicant();
     }
 }
