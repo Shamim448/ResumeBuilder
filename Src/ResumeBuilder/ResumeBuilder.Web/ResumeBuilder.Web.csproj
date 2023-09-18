@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ResumeBuilder.Infrastructure\ResumeBuilder.Infrastructure.csproj" />
     <ProjectReference Include="..\ResumeBuilder.Persistence\ResumeBuilder.Persistence.csproj" />
   </ItemGroup>
 

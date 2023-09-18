@@ -5,6 +5,7 @@ using ResumeBuilder.Domain.Entities;
 using ResumeBuilder.Domain.Entities.ListType;
 using ResumeBuilder.Persistence;
 using ResumeBuilder.Web.Areas.Users.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ResumeBuilder.Web.Areas.Users.Controllers
 {
@@ -23,9 +24,9 @@ namespace ResumeBuilder.Web.Areas.Users.Controllers
         }
         public IActionResult Index()
         {
-            List<Applicant> applicants;
-            applicants = _context.Applicants.ToList();
-            return View(applicants);
+           var model = _scope.Resolve<ApplicantVM>();
+           // var data = model.GetApplicants();
+            return View(model);
         }
         [HttpGet]
         public IActionResult Create()

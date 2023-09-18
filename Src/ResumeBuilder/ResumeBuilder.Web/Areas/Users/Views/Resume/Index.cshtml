@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ResumeBuilder.Domain.Entities.Applicant>
+﻿@model ApplicantVM
 @{
     ViewData["Title"] = "Index";
 }
@@ -26,7 +26,17 @@
         </tr>
     </thead>
     <tbody>
-
+        @foreach (var ed in Model.GetApplicants())
+        {
+            <tr>
+                <td>@ed.FName</td>
+                <td>@ed.Email</td>
+                <td>@ed.PhoneNo</td>
+                <td>@ed.Address</td>
+            </tr>
+        }
+        
+        
     </tbody>
 </table>
 

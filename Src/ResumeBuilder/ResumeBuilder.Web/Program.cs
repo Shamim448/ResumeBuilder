@@ -7,6 +7,8 @@ using System.Reflection;
 using ResumeBuilder.Persistence.Extentions;
 using Serilog;
 using Serilog.Events;
+using CSEData.Infrastructure;
+using ResumeBuilder.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((ctx, lc) => lc
@@ -27,11 +29,13 @@ try
     {
         //Module class binding here
         containerBuilder.RegisterModule(new PersistenceModule(connectionString, migrationAssembly));
+        containerBuilder.RegisterModule(new InfrastructureModule());
+        containerBuilder.RegisterModule(new WebModule());
     });
     //Configure Autofac End
 
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(connectionString, (x) => x.MigrationsAssembly(migrationAssembly)));
+    //builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    //    options.UseSqlServer(connectionString, (x) => x.MigrationsAssembly(migrationAssembly)));
 
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

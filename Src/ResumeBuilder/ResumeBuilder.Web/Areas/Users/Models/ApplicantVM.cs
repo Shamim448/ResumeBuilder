@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using ResumeBuilder.Application.Features.Resume.Services;
+using ResumeBuilder.Domain.Entities;
 using ResumeBuilder.Domain.Entities.ListType;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -38,18 +39,24 @@ namespace ResumeBuilder.Web.Areas.Users.Models
 
         public IList<Education>? Educations { get; set; } = new List<Education>();
 
-        //public ApplicantVM()
-        //{
+        public ApplicantVM()
+        {
+
+        }
+        private IResumeBuilderService _resumeBuilderService;
+        public ApplicantVM(IResumeBuilderService resumeBuilderService)
+        {
+            _resumeBuilderService = resumeBuilderService;
             
-        //}
-        //private IResumeBuilderService _resumeBuilderService;
-        //public ApplicantVM(IResumeBuilderService resumeBuilderService)
-        //{
-        //    _resumeBuilderService = resumeBuilderService;
-        //}
-        //internal void ResolveDependency(ILifetimeScope scope)
-        //{
-        //    _resumeBuilderService = scope.Resolve<IResumeBuilderService>();
-        //}
+        }
+        internal void ResolveDependency(ILifetimeScope scope)
+        {
+            _resumeBuilderService = scope.Resolve<IResumeBuilderService>();
+           
+        }
+        public IList<Applicant> GetApplicants()
+        {
+            return _resumeBuilderService.GetAllApplicant();
+        }
     }
 }
