@@ -2,7 +2,6 @@
 using ResumeBuilder.Application;
 using ResumeBuilder.Application.Features.Resume.Repositories;
 
-
 namespace ResumeBuilder.Persistence
 {
     public class PersistenceModule : Module
@@ -27,10 +26,12 @@ namespace ResumeBuilder.Persistence
                 .WithParameter("migrationAssembly", _migrationAssembly)
                 .InstancePerLifetimeScope();
 
-            //builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
-            //    .InstancePerLifetimeScope();
+            builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<ResumeRepository>().As<IResumeRepository>()
+               .InstancePerLifetimeScope();
 
-           
+
 
         }
     }
