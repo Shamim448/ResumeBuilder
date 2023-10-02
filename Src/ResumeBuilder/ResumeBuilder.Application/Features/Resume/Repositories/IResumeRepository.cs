@@ -5,6 +5,7 @@ namespace ResumeBuilder.Application.Features.Resume.Repositories
 {
     public interface IResumeRepository : IRepositoryBase<MyResume, Guid>
     { 
+
     
     }
 }
