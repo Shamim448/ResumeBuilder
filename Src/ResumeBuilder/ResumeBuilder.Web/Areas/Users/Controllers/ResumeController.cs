@@ -1,9 +1,11 @@
 ﻿using Autofac;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ResumeBuilder.Domain.Entities;
+using ResumeBuilder.Domain.Entities.ListType;
 using ResumeBuilder.Persistence;
 using ResumeBuilder.Web.Areas.Users.Models;
-
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ResumeBuilder.Web.Areas.Users.Controllers
 {
@@ -23,15 +25,14 @@ namespace ResumeBuilder.Web.Areas.Users.Controllers
         public IActionResult Index()
         {
            var model = _scope.Resolve<ApplicantVM>();
-           // var data = model.GetApplicants();
+          
             return View(model);
         }
         [HttpGet]
         public IActionResult Create()
         {
             var model = _scope.Resolve<ApplicantVM>();
-            //ApplicantVM applicant = new ApplicantVM();
-            //applicant.Educations.Add(new Education() { Id = new Guid("7D688CCB-624A-46A4-AB08-24E0795B947B") });
+            
             return View(model);
         }
         [HttpPost]
@@ -39,7 +40,7 @@ namespace ResumeBuilder.Web.Areas.Users.Controllers
         {
             if (ModelState.IsValid)
             {
-                //model.CreateResume();
+                model.CreateResume();
             }
             
             

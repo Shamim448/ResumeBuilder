@@ -14,13 +14,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.5" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ResumeBuilder.Application\ResumeBuilder.Application.csproj" />
     <ProjectReference Include="..\ResumeBuilder.Domain\ResumeBuilder.Domain.csproj" />
-    <ProjectReference Include="..\ResumeBuilder.Infrastructure\ResumeBuilder.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

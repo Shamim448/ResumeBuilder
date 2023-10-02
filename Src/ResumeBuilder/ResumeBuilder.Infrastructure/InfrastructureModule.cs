@@ -13,7 +13,7 @@ namespace CSEData.Infrastructure
         }
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ResumeService>().As<IResumeService>()
+            builder.RegisterType<ResumeBuilderService>().As<IResumeBuilderService>()
                 .InstancePerLifetimeScope();
 
         }

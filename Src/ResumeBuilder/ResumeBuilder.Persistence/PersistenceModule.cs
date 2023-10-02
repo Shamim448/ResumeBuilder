@@ -28,10 +28,21 @@ namespace ResumeBuilder.Persistence
 
             builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
                 .InstancePerLifetimeScope();
+<<<<<<< HEAD
             builder.RegisterType<ResumeRepository>().As<IResumeRepository>()
                .InstancePerLifetimeScope();
 
 
+=======
+
+            builder.RegisterType<EducationRepository>().As<IEducationRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ApplicantRepository>().As<IApplicantRepository>()
+               .InstancePerLifetimeScope();
+            builder.RegisterType<ResumeRepository>().As<IResumeRepository>()
+              .InstancePerLifetimeScope();
+>>>>>>> 3e901c7136dabbf77070fc92dbd8d7cad2694857
 
         }
     }

@@ -2,6 +2,7 @@
 using ResumeBuilder.Domain.Entities;
 using System.Linq.Expressions;
 
+
 namespace ResumeBuilder.Domain.Repositories
 {
     public interface IRepositoryBase<TEntity, TKey>

@@ -1,10 +1,7 @@
-﻿using Autofac;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using ResumeBuilder.Persistence.Membership;
 using ResumeBuilder.Web.Models;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace ResumeBuilder.Web.Controllers
 {
@@ -13,26 +10,25 @@ namespace ResumeBuilder.Web.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ILifetimeScope _scope;
-        public AccountController(ILifetimeScope scope, UserManager<IdentityUser> userManager,
+
+        public AccountController(UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager)
         {
-            _scope = scope;
             _signInManager = signInManager;
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Register(string returnUrl = null)
+        public IActionResult Register()
         {
-                    
             return View();
         }
         [HttpPost, ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Register(RegisterVM model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                var user = new IdentityUser
                 {
                     UserName = model.UserName,
                     Email = model.Email,
@@ -42,7 +38,6 @@ namespace ResumeBuilder.Web.Controllers
 
                 if (result.Succeeded)
                 {
-
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "home");
                 }

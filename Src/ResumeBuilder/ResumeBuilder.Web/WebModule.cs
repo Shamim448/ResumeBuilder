@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using ResumeBuilder.Web.Areas.Users.Models;
-using ResumeBuilder.Web.Models;
 
 namespace ResumeBuilder.Web
 {
@@ -12,8 +11,8 @@ namespace ResumeBuilder.Web
         }
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ApplicantVM>().AsSelf().InstancePerLifetimeScope();           
-            builder.RegisterType<RegisterVM>().AsSelf().InstancePerLifetimeScope();
+            builder.RegisterType<ApplicantVM>().AsSelf().InstancePerLifetimeScope();
+            builder.RegisterType<EducationVM>().AsSelf().InstancePerLifetimeScope();
             base.Load(builder);
         }
     }
