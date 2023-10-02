@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ResumeBuilder.Application\ResumeBuilder.Application.csproj" />
     <ProjectReference Include="..\ResumeBuilder.Domain\ResumeBuilder.Domain.csproj" />
+    <ProjectReference Include="..\ResumeBuilder.Infrastructure\ResumeBuilder.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
