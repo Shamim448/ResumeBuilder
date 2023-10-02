@@ -8,7 +8,7 @@ using ResumeBuilder.Persistence.Membership;
 
 namespace ResumeBuilder.Persistence
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext, IApplicationDbContext
     {
         private readonly string _connectionString;
         private readonly string _migrationAssembly;

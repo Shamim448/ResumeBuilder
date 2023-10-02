@@ -1,6 +1,7 @@
 ﻿using ResumeBuilder.Application;
 using ResumeBuilder.Application.Features.Resume.Services;
 using ResumeBuilder.Domain.Entities;
+using ResumeBuilder.Domain.Entities.CV;
 using ResumeBuilder.Domain.Entities.ListType;
 
 namespace ResumeBuilder.Infrastructure.Features.Services
@@ -41,6 +42,11 @@ namespace ResumeBuilder.Infrastructure.Features.Services
         public IList<Applicant> GetAllApplicant()
         {
            return _unitOfWork.Applicants.GetAll();
+        }
+
+        public IList<MyResume> GetAllResumes()
+        {
+            return _unitOfWork.Resumes.GetAll();
         }
     }
 }

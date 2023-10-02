@@ -38,7 +38,7 @@ namespace ResumeBuilder.Web.Areas.Users.Models
         [StringLength(300)]
         public string? Summary { get; set; }
 
-        public IList<Education>? Educations { get; set; } = new List<Education>();
+        public IList<Education>? Educations { get; set; } /*= new List<Education>();*/
 
         public ApplicantVM()
         {

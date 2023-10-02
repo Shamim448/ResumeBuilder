@@ -1,4 +1,5 @@
-﻿@model ApplicantVM
+﻿@model IEnumerable< ResumeModel>
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -12,31 +13,29 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FName)
+                @Html.DisplayNameFor(model => model.ResumeName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.ResumeCreateDate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var ed in Model.GetApplicants())
-        {
-            <tr>
-                <td>@ed.FName</td>
-                <td>@ed.Email</td>
-                <td>@ed.PhoneNo</td>
-                <td>@ed.Address</td>
-            </tr>
-        }
-        
-        
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResumeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResumeCreateDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-

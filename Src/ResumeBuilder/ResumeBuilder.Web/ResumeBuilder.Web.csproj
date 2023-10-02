@@ -38,4 +38,8 @@
     <ProjectReference Include="..\ResumeBuilder.Persistence\ResumeBuilder.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
 </Project>

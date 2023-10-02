@@ -1,0 +1,405 @@
+﻿@model ApplicantVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<h4>Applicant</h4>
+
+<!-- custom css -->
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    }
+
+
+
+
+<section id="about-sc" class="">
+    <div class="container">
+        <div class="about-cnt">
+            <form asp-action="Create" asp-controller="Resume" asp-area="Users" class="cv-form" id="cv-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @********** about *********************@
+                <div class="cv-form-blk">
+                    <div class="cv-form-row-title">
+                        <a data-toggle="collapse" data-target="#about-sec"
+                           aria-expanded="false" aria-controls="about-sec">
+                            <h3>about section</h3>
+                        </a>
+                    </div>
+                    <div class="cv-form-row cv-form-row-about collapse" id="about-sec">
+                        <div class="cols-3">
+                            <div class="form-elem">
+                                <label for="" class="form-label" asp-for="FName"></label>
+                                <input asp-for="FName" class="form-control firstname" id="" onkeyup="generateCV()" placeholder="e.g. John">
+                                <span asp-validation-for="FName" class="form-text text-danger"></span>
+                            </div>
+                            <div class="form-elem">
+                                <label for="" class="form-label" asp-for="MName"> </label>
+                                <input asp-for="MName"  class="form-control middlename" id="" onkeyup="generateCV()" placeholder="e.g. Herbert">
+                                <span asp-validation-for="MName" class="form-text text-danger"></span>
+                            </div>
+                            <div class="form-elem">
+                                <label for="" class="form-label" asp-for="LName"></label>
+                                <input asp-for="LName"  class="form-control lastname" id="" onkeyup="generateCV()" placeholder="e.g. Doe">
+                                <span asp-validation-for="LName" class="form-text"></span>
+                            </div>
+                        </div>
+
+                        <div class="cols-3">
+                            <div class="form-elem">
+                                <label for="" class="form-label">Your Image</label>
+                                <input name="image" type="file" class="form-control image" id="" accept="image/*" onchange="previewImage()">
+                            </div>
+                            <div class="form-elem">
+                                <label for="" class="form-label" asp-for="Designation"></label>
+                                <input asp-for="Designation" class="form-control designation" id="" onkeyup="generateCV()" placeholder="e.g. Sr.Accountants">
+                                <span asp-validation-for="Designation" class="form-text text-danger"></span>
+                            </div>
+                            <div class="form-elem">
+                                <label for="" class="form-label" asp-for="Address"></label>
+                                <input asp-for="Address" class="form-control address" id="" onkeyup="generateCV()" placeholder="e.g. Lake Street-23">
+                                <span asp-validation-for="Address" class="form-text text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="cols-3">
+                            <div class="form-elem">
+                                <label for="" class="form-label" asp-for="Email"></label>
+                                <input asp-for="Email" class="form-control email" id="" onkeyup="generateCV()" placeholder="e.g. johndoe@gmail.com">
+                                <span asp-validation-for="Email" class="form-text text-danger"></span>
+                            </div>
+                            <div class="form-elem">
+                                <label for="" class="form-label" asp-for="PhoneNo"></label>
+                                <input asp-for="PhoneNo" class="form-control phoneno" id="" onkeyup="generateCV()" placeholder="e.g. 456-768-798, 567.654.002">
+                                <span asp-validation-for="PhoneNo" class="form-text text-danger"></span>
+                            </div>
+                            <div class="form-elem">
+                                <label for="" class="form-label" asp-for="Summary"></label>
+                                <input asp-for="Summary" class="form-control summary" id="" onkeyup="generateCV()" placeholder="e.g. Doe">
+                                <span asp-validation-for="Summary" class="form-text text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @********** achievements *********************@
+                <div class="cv-form-blk">
+                    <div class="cv-form-row-title">
+                        <a data-toggle="collapse" data-target="#achievement-sec"
+                           aria-expanded="false" aria-controls="achievement-sec">
+                            <h3>achievements</h3>
+                        </a>
+
+                    </div>
+
+                    <div class="row-separator repeater collapse" id="achievement-sec">
+                        <div class="repeater" data-repeater-list="group-a">
+                            <div data-repeater-item>
+                                <div class="cv-form-row cv-form-row-achievement">
+                                    <div class="cols-3">
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Title</label>
+                                            <input name="achieve_title" type="text" class="form-control achieve_title" id="" onkeyup="generateCV()" placeholder="e.g. johndoe@gmail.com">
+                                            <span class="form-text"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Description</label>
+                                            <input name="achieve_description" type="text" class="form-control achieve_description" id="" onkeyup="generateCV()" placeholder="e.g. johndoe@gmail.com">
+                                            <span class="form-text"></span>
+                                        </div>
+                                    </div>
+                                    <button data-repeater-delete type="button" class="repeater-remove-btn">-</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                    </div>
+                </div>
+                @********** experience *********************@
+                <div class="cv-form-blk">
+                    <div class="cv-form-row-title">
+                        <a data-toggle="collapse" data-target="#experience-sec"
+                           aria-expanded="false" aria-controls="experience-sec">
+                            <h3>experience</h3>
+                        </a>
+
+                    </div>
+
+                    <div class="row-separator repeater collapse" id="experience-sec">
+                        <div class="repeater" data-repeater-list="group-b">
+                            <div data-repeater-item>
+                                <div class="cv-form-row cv-form-row-experience">
+                                    <div class="cols-3">
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Title</label>
+                                            <input name="exp_title" type="text" class="form-control exp_title" id="" onkeyup="generateCV()">
+                                            <span class="form-text"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Company / Organization</label>
+                                            <input name="exp_organization" type="text" class="form-control exp_organization" id="" onkeyup="generateCV()">
+                                            <span class="form-text"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Location</label>
+                                            <input name="exp_location" type="text" class="form-control exp_location" id="" onkeyup="generateCV()">
+                                            <span class="form-text"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="cols-3">
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Start Date</label>
+                                            <input name="exp_start_date" type="date" class="form-control exp_start_date" id="" onkeyup="generateCV()">
+                                            <span class="form-text"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">End Date</label>
+                                            <input name="exp_end_date" type="date" class="form-control exp_end_date" id="" onkeyup="generateCV()">
+                                            <span class="form-text"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Description</label>
+                                            <input name="exp_description" type="text" class="form-control exp_description" id="" onkeyup="generateCV()">
+                                            <span class="form-text"></span>
+                                        </div>
+                                    </div>
+
+                                    <button data-repeater-delete type="button" class="repeater-remove-btn">-</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                    </div>
+                </div>
+                @********** education *********************@
+                <div class="cv-form-blk">
+                    <div class="cv-form-row-title">
+                        <a data-toggle="collapse" data-target="#education-sec"
+                           aria-expanded="false" aria-controls="education-sec">
+                            <h3>education</h3>
+                        </a>
+
+                    </div>
+                    @* @for (int i = 0; i <= Model.Educations.Count; i++ ) *@
+                    @foreach (var edu in Model.Educations)
+                    {                    
+                    <div class="row-separator repeater collapse" id="education-sec">
+                        <div class="repeater" data-repeater-list="group-c">
+                            <div data-repeater-item>
+                                <div class="cv-form-row cv-form-row-experience">
+                                    <div class="cols-3">
+                                        <div class="form-elem">
+                                            <label for="" class="form-label" asp-for="@edu.Institution"></label>
+                                                <input asp-for="@edu.Institution" class="form-control edu_school" id="" onkeyup="generateCV()">
+                                                <span asp-validation-for="@edu.Institution" class="form-text text-danger"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                                <label for="" class="form-label" asp-for="@edu.Degree"></label>
+                                                <input asp-for="@edu.Degree" class="form-control edu_degree" id="" onkeyup="generateCV()">
+                                                <span asp-validation-for="@edu.Degree" class="form-text text-danger"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                                <label for="" class="form-label" asp-for="@edu.City"></label>
+                                                <input asp-for="@edu.City" class="form-control edu_city" id="" onkeyup="generateCV()">
+                                                <span asp-validation-for="@edu.City" class="form-text text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="cols-3">
+                                        <div class="form-elem">
+                                                <label for="" class="form-label" asp-for="@edu.StartDate"></label>
+                                                <input asp-for="@edu.StartDate" class="form-control edu_start_date" id="" onkeyup="generateCV()">
+                                                <span asp-validation-for="@edu.StartDate" class="form-text text-danger"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                                <label for="" class="form-label" asp-for="@edu.EndDate"></label>
+                                                <input asp-for="@edu.EndDate" class="form-control edu_graduation_date" id="" onkeyup="generateCV()">
+                                                <span asp-validation-for="@edu.EndDate" class="form-text text-danger"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                                <label for="" class="form-label" asp-for="@edu.Description"></label>
+                                                <input asp-for="@edu.Description" class="form-control edu_description" id="" onkeyup="generateCV()">
+                                                <span asp-validation-for="@edu.Description" class="form-text text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <button data-repeater-delete type="button" class="repeater-remove-btn">-</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                    </div>
+                    }
+                </div>
+                @********** projects *********************@
+                <div class="cv-form-blk">
+                    <div class="cv-form-row-title">
+                        <a data-toggle="collapse" data-target="#projects-sec"
+                           aria-expanded="false" aria-controls="projects-sec">
+                            <h3>projects</h3>
+                        </a>
+
+                    </div>
+
+                    <div class="row-separator repeater collapse" id="projects-sec">
+                        <div class="repeater" data-repeater-list="group-d">
+                            <div data-repeater-item>
+                                <div class="cv-form-row cv-form-row-experience">
+                                    <div class="cols-3">
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Project Name</label>
+                                            <input name="proj_title" type="text" class="form-control proj_title" id="" onkeyup="generateCV()">
+                                            <span class="form-text"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Project link</label>
+                                            <input name="proj_link" type="text" class="form-control proj_link" id="" onkeyup="generateCV()">
+                                            <span class="form-text"></span>
+                                        </div>
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Description</label>
+                                            <input name="proj_description" type="text" class="form-control proj_description" id="" onkeyup="generateCV()">
+                                            <span class="form-text"></span>
+                                        </div>
+                                    </div>
+                                    <button data-repeater-delete type="button" class="repeater-remove-btn">-</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                    </div>
+                </div>
+                @********** skills *********************@
+                <div class="cv-form-blk">
+                    <div class="cv-form-row-title">
+                        <a data-toggle="collapse" data-target="#skills-sec"
+                           aria-expanded="false" aria-controls="skills-sec">
+                            <h3>skills</h3>
+                        </a>
+
+                    </div>
+
+                    <div class="row-separator repeater collapse" id="skills-sec">
+                        <div class="repeater" data-repeater-list="group-e">
+                            <div data-repeater-item>
+                                <div class="cv-form-row cv-form-row-skills">
+                                    <div class="form-elem">
+                                        <label for="" class="form-label">Skill</label>
+                                        <input name="skill" type="text" class="form-control skill" id="" onkeyup="generateCV()">
+                                        <span class="form-text"></span>
+                                    </div>
+
+                                    <button data-repeater-delete type="button" class="repeater-remove-btn">-</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<section id="preview-sc mt-2" class="print_area">
+    <div class="container">
+        <div class="preview-cnt">
+            <div class="preview-cnt-l bg-green text-white">
+                <div class="preview-blk">
+                    <div class="preview-image">
+                        <img src="" alt="" id="image_dsp">
+                    </div>
+                    <div class="preview-item preview-item-name">
+                        <span class="preview-item-val fw-6" id="fullname_dsp"></span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-item-val text-uppercase fw-6 ls-1" id="designation_dsp"></span>
+                    </div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>about</h3>
+                    </div>
+                    <div class="preview-blk-list">
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="phoneno_dsp"></span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="email_dsp"></span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="address_dsp"></span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="summary_dsp"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>skills</h3>
+                    </div>
+                    <div class="skills-items preview-blk-list" id="skills_dsp">
+                        <!-- skills list here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-cnt-r bg-white">
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>Achievements</h3>
+                    </div>
+                    <div class="achievements-items preview-blk-list" id="achievements_dsp"></div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>educations</h3>
+                    </div>
+                    <div class="educations-items preview-blk-list" id="educations_dsp"></div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>experiences</h3>
+                    </div>
+                    <div class="experiences-items preview-blk-list" id="experiences_dsp"></div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>projects</h3>
+                    </div>
+                    <div class="projects-items preview-blk-list" id="projects_dsp"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="print-btn-sc">
+    <div class="container">
+        <button type="button" class="print-btn btn btn-primary" onclick="printCV()">Print CV</button>
+    </div>
+</section>
+
+@section Scripts{
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <!-- jquery repeater cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js" integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- custom js -->
+    <script src="~/assets/js/script.js"></script>
+    <!-- app js -->
+    <script src="~/assets/js/app.js"></script>
+    }
+
+
