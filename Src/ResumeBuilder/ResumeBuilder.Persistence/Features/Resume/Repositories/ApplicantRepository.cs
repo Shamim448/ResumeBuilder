@@ -17,6 +17,7 @@ namespace ResumeBuilder.Application.Features.Resume.Repositories
         public ApplicantRepository(IApplicationDbContext dbContext)
             : base((DbContext)dbContext)
         {
+
         }
     }
 }

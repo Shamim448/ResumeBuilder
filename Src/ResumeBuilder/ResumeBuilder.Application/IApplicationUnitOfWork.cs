@@ -12,5 +12,6 @@ namespace ResumeBuilder.Application
         IApplicantRepository Applicants { get; }
         IEducationRepository Educations { get; }
         IResumeRepository Resumes { get; }
+
     }
 }

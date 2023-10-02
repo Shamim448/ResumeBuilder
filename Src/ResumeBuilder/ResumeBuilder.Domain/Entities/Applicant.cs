@@ -17,5 +17,6 @@ namespace ResumeBuilder.Domain.Entities
         public string? Summary { get; set; }
 
         public IList<Education>? Educations { get; set ; } = new List<Education>();
+
     }
 }

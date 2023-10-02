@@ -2,10 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using ResumeBuilder.Domain.Entities;
 using ResumeBuilder.Domain.Entities.CV;
-<<<<<<< HEAD
-=======
 using ResumeBuilder.Domain.Entities.ListType;
->>>>>>> 3e901c7136dabbf77070fc92dbd8d7cad2694857
+
 using ResumeBuilder.Persistence.Membership;
 
 namespace ResumeBuilder.Persistence
@@ -41,6 +39,7 @@ namespace ResumeBuilder.Persistence
         public DbSet<Applicant> Applicants { get ; set ; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<MyResume> Resumes { get; set; }
+
 
     }
 }

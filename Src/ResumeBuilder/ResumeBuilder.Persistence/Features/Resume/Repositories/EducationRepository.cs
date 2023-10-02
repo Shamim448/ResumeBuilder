@@ -13,6 +13,7 @@ namespace ResumeBuilder.Application.Features.Resume.Repositories
         public EducationRepository(IApplicationDbContext dbContext)
             : base((DbContext)dbContext)
         {
+
         }
     }
 }

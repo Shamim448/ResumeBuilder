@@ -15,6 +15,8 @@ namespace CSEData.Infrastructure
         {
             builder.RegisterType<ResumeBuilderService>().As<IResumeBuilderService>()
                 .InstancePerLifetimeScope();
+            builder.RegisterType<ResumeService>().As<IResumeService>()
+               .InstancePerLifetimeScope();
 
         }
     }
