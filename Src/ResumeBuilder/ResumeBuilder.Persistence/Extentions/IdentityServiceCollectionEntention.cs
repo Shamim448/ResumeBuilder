@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using ResumeBuilder.Persistence.Membership;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace ResumeBuilder.Persistence.Extentions
             //                .Build();
             //    config.Filters.Add(new AuthorizeFilter(policy));
             //});
+            services.AddRazorPages();
         }
     }
 }

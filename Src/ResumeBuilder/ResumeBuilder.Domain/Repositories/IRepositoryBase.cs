@@ -1,7 +1,6 @@
 
-using ResumeBuildero.Domain.Entities;
+using ResumeBuilder.Domain.Entities;
 using System.Linq.Expressions;
-
 
 namespace ResumeBuilder.Domain.Repositories
 {

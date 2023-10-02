@@ -1,10 +1,10 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using ResumeBuildero.Domain.Entities;
 using System.Data;
 using System.Linq.Expressions;
 using System.Linq.Dynamic.Core;
+using ResumeBuilder.Domain.Entities;
 
 namespace ResumeBuilder.Persistence
 {

@@ -1,11 +1,9 @@
 ﻿using Autofac;
-using Microsoft.AspNetCore.Authorization;
+
 using Microsoft.AspNetCore.Mvc;
-using ResumeBuilder.Domain.Entities;
-using ResumeBuilder.Domain.Entities.ListType;
 using ResumeBuilder.Persistence;
 using ResumeBuilder.Web.Areas.Users.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace ResumeBuilder.Web.Areas.Users.Controllers
 {
@@ -41,7 +39,7 @@ namespace ResumeBuilder.Web.Areas.Users.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.CreateResume();
+                //model.CreateResume();
             }
             
             

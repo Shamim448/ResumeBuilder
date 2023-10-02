@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ResumeBuilder.Domain.Entities;
-using ResumeBuilder.Domain.Entities.ListType;
-using ResumeBuilder.Persistence.Membership;
+using ResumeBuilder.Domain.Entities.CV;
 
 namespace ResumeBuilder.Persistence
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext, IApplicationDbContext
     {
         private readonly string _connectionString;
         private readonly string _migrationAssembly;
@@ -15,10 +13,6 @@ namespace ResumeBuilder.Persistence
             _connectionString = connectionString;
             _migrationAssembly = migrationAssembly;
         }
-        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        //    : base(options)
-        //{
-        //}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -34,8 +28,7 @@ namespace ResumeBuilder.Persistence
         {            
             base.OnModelCreating(optionsBuilder);
         }
-        public DbSet<Applicant> Applicants { get ; set ; }
-        public DbSet<Education> Educations { get; set; }
 
+        public DbSet<MyResume> Resumes { get; set; }
     }
 }

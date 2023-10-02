@@ -1,14 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ResumeBuilder.Domain.Entities;
-using ResumeBuilder.Domain.Entities.ListType;
-
+﻿
+using Microsoft.EntityFrameworkCore;
+using ResumeBuilder.Domain.Entities.CV;
 
 namespace ResumeBuilder.Persistence
 {
     public interface IApplicationDbContext
     {
-        
-        public DbSet<Applicant> Applicants { get; set; }
-        public DbSet<Education> Educations { get; set; }
+        DbSet<MyResume> Resumes { get; set; }
     }
 }

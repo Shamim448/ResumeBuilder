@@ -27,14 +27,10 @@ namespace ResumeBuilder.Persistence
                 .WithParameter("migrationAssembly", _migrationAssembly)
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
-                .InstancePerLifetimeScope();
+            //builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
+            //    .InstancePerLifetimeScope();
 
-            builder.RegisterType<EducationRepository>().As<IEducationRepository>()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<ApplicantRepository>().As<IApplicantRepository>()
-               .InstancePerLifetimeScope();
+           
 
         }
     }
