@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using ResumeBuildero.Domain.Entities;
+using ResumeBuilder.Domain.Entities;
 using System.Data;
 using System.Linq.Expressions;
 using System.Linq.Dynamic.Core;

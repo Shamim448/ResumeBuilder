@@ -1,5 +1,5 @@
 ﻿using ResumeBuilder.Domain.Entities.ListType;
-using ResumeBuildero.Domain.Entities;
+using ResumeBuilder.Domain.Entities;
 
 
 namespace ResumeBuilder.Domain.Entities

@@ -1,4 +1,4 @@
-﻿using ResumeBuildero.Domain.Entities;
+﻿using ResumeBuilder.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

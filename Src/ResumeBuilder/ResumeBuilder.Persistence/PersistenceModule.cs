@@ -35,6 +35,8 @@ namespace ResumeBuilder.Persistence
 
             builder.RegisterType<ApplicantRepository>().As<IApplicantRepository>()
                .InstancePerLifetimeScope();
+            builder.RegisterType<ResumeRepository>().As<IResumeRepository>()
+              .InstancePerLifetimeScope();
 
         }
     }

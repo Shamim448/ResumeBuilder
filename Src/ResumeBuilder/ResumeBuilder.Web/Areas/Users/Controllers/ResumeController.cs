@@ -25,15 +25,14 @@ namespace ResumeBuilder.Web.Areas.Users.Controllers
         public IActionResult Index()
         {
            var model = _scope.Resolve<ApplicantVM>();
-           // var data = model.GetApplicants();
+          
             return View(model);
         }
         [HttpGet]
         public IActionResult Create()
         {
             var model = _scope.Resolve<ApplicantVM>();
-            //ApplicantVM applicant = new ApplicantVM();
-            //applicant.Educations.Add(new Education() { Id = new Guid("7D688CCB-624A-46A4-AB08-24E0795B947B") });
+            
             return View(model);
         }
         [HttpPost]

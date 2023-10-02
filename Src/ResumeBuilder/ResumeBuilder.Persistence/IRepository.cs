@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore.Query;
 using ResumeBuilder.Domain.Repositories;
-using ResumeBuildero.Domain.Entities;
+using ResumeBuilder.Domain.Entities;
 using System.Linq.Expressions;
 
 namespace ResumeBuilder.Persistence
