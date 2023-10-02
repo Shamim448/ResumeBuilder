@@ -10,5 +10,6 @@ namespace ResumeBuilder.Application.Features.Resume.Repositories
 {
     public interface IApplicantRepository : IRepositoryBase<Applicant, Guid>
     {
+
     }
 }
