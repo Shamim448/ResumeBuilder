@@ -12,8 +12,8 @@ using ResumeBuilder.Persistence;
 namespace ResumeBuilder.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230917113641_ApplicentEducationTable")]
-    partial class ApplicentEducationTable
+    [Migration("20231003032301_ResumeTable")]
+    partial class ResumeTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -256,6 +256,23 @@ namespace ResumeBuilder.Web.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Applicants");
+                });
+
+            modelBuilder.Entity("ResumeBuilder.Domain.Entities.CV.MyResume", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ResumeCreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ResumeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Resumes");
                 });
 
             modelBuilder.Entity("ResumeBuilder.Domain.Entities.ListType.Education", b =>

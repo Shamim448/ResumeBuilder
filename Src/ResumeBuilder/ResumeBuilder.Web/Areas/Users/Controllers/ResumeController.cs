@@ -22,7 +22,7 @@ namespace ResumeBuilder.Web.Areas.Users.Controllers
         public IActionResult Index()
         {
            var model = _scope.Resolve<ResumeModel>();
-        
+            model.GetResumes();
             return View(model);
         }
         [HttpGet]

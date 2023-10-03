@@ -1,4 +1,4 @@
-﻿@model IEnumerable< ResumeModel>
+﻿@model ResumeModel
 
 @{
     ViewData["Title"] = "Index";
@@ -22,18 +22,19 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.GetResumes())
+{
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ResumeName)
+                @item.ResumeName
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResumeCreateDate)
+            <td>               
+                @item.ResumeCreateDate
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            <td>              
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |              
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |              
             </td>
         </tr>
 }
