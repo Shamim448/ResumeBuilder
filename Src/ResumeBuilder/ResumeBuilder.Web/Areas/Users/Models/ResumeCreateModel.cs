@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ResumeBuilder.Application.Features.Resume.Services;
+using ResumeBuilder.Domain.Entities.CV;
 using System.ComponentModel.DataAnnotations;
 
 namespace ResumeBuilder.Web.Areas.Users.Models
@@ -11,6 +12,8 @@ namespace ResumeBuilder.Web.Areas.Users.Models
         public string ResumeName { get; set; }
         public Guid? UserId { get; set; }
         public Guid? TemplateId { get; set; }
+
+        public PersonalInfo PersonalInfo { get; set; }
 
         private IResumeService _resumeService;
         public ResumeCreateModel()

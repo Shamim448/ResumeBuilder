@@ -32,9 +32,8 @@ namespace ResumeBuilder.Web.Areas.Users.Controllers
         }
         [HttpGet]
         public IActionResult Create()
-        {
-            var model = _scope.Resolve<ResumeCreateModel>();           
-            return View(model);
+        {         
+            return View();
         }
         [HttpPost]
         public IActionResult Create(ResumeCreateModel model)

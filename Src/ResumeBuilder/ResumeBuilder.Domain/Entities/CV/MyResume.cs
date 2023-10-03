@@ -11,6 +11,7 @@ namespace ResumeBuilder.Domain.Entities.CV
         public DateTime ResumeCreateDate { get; set; }
         public Guid UserId { get; set; }
         public Guid TemplateId { get; set; }
+        public virtual PersonalInfo PersonalInfo { get; set; }
 
     }
 }
