@@ -9,5 +9,8 @@ namespace ResumeBuilder.Domain.Entities.CV
         public Guid Id { get; set; }
         public string? ResumeName { get; set; }
         public DateTime ResumeCreateDate { get; set; }
+        public Guid UserId { get; set; }
+        public Guid TemplateId { get; set; }
+
     }
 }

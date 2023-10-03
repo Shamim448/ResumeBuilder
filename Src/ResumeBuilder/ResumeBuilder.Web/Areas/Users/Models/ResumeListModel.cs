@@ -7,26 +7,26 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ResumeBuilder.Web.Areas.Users.Models
 {
-    public class ResumeModel
+    public class ResumeListModel
     {
         [MaxLength(100)]
         [Required]
         public string? ResumeName { get; set; }
         public DateTime? ResumeCreateDate { get; set; }
 
-        public ResumeModel()
+        private IResumeService _resumeBuilderService;
+        public ResumeListModel()
         {
 
-        }
-        private IResumeBuilderService _resumeBuilderService;
-        public ResumeModel(IResumeBuilderService resumeBuilderService)
+        } 
+        public ResumeListModel(IResumeService resumeBuilderService)
         {
             _resumeBuilderService = resumeBuilderService;
 
         }
         internal void ResolveDependency(ILifetimeScope scope)
         {
-            _resumeBuilderService = scope.Resolve<IResumeBuilderService>();
+            _resumeBuilderService = scope.Resolve<IResumeService>();
 
         }
         internal IList<MyResume> GetResumes()

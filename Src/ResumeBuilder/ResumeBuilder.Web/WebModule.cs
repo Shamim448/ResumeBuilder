@@ -13,7 +13,7 @@ namespace ResumeBuilder.Web
         {
             builder.RegisterType<ApplicantVM>().AsSelf().InstancePerLifetimeScope();
             builder.RegisterType<EducationVM>().AsSelf().InstancePerLifetimeScope();
-            builder.RegisterType<ResumeModel>().AsSelf().InstancePerLifetimeScope();
+            builder.RegisterType<ResumeListModel>().AsSelf().InstancePerLifetimeScope();
             base.Load(builder);
         }
     }
