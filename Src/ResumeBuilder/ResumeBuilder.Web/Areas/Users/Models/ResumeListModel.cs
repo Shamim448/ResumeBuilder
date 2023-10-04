@@ -13,26 +13,34 @@ namespace ResumeBuilder.Web.Areas.Users.Models
         [Required]
         public string? ResumeName { get; set; }
         public DateTime? ResumeCreateDate { get; set; }
+        public virtual PersonalInfo? PersonalInfo { get; set; }
 
-        private IResumeService _resumeBuilderService;
+        private IResumeService _resumeService;
         public ResumeListModel()
         {
 
         } 
         public ResumeListModel(IResumeService resumeBuilderService)
         {
-            _resumeBuilderService = resumeBuilderService;
+            _resumeService = resumeBuilderService;
 
         }
         internal void ResolveDependency(ILifetimeScope scope)
         {
-            _resumeBuilderService = scope.Resolve<IResumeService>();
+            _resumeService = scope.Resolve<IResumeService>();
 
         }
         internal IList<MyResume> GetResumes()
         {
-            return _resumeBuilderService.GetAllResumes();
+            return _resumeService.GetAllResumes();
         }
 
+        //Return single Resume
+        internal PersonalInfo ViewResume(Guid id)
+        {
+            PersonalInfo personalInfo = _resumeService.GetResume(id);
+            
+            return personalInfo;
+        }
     }
 }

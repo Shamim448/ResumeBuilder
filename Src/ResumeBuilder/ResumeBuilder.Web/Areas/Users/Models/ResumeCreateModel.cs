@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Microsoft.AspNetCore.Identity;
 using ResumeBuilder.Application.Features.Resume.Services;
 using ResumeBuilder.Domain.Entities.CV;
 using System.ComponentModel.DataAnnotations;
@@ -13,17 +14,18 @@ namespace ResumeBuilder.Web.Areas.Users.Models
         public Guid? UserId { get; set; }
         public Guid? TemplateId { get; set; }
 
-        public PersonalInfo PersonalInfo { get; set; }
+        public virtual PersonalInfo? PersonalInfo { get; set; } 
 
         private IResumeService _resumeService;
+        private UserManager<IdentityUser> _userManager;
         public ResumeCreateModel()
         {
 
         }
-        public ResumeCreateModel(IResumeService resumeService)
+        public ResumeCreateModel(IResumeService resumeService,
+            UserManager<IdentityUser> userManager)
         {
             _resumeService = resumeService;
-
         }
         internal void ResolveDependency(ILifetimeScope scope)
         {
@@ -31,11 +33,13 @@ namespace ResumeBuilder.Web.Areas.Users.Models
 
         }
         internal void CreateAResume()
-        {
-            if(!string.IsNullOrEmpty(ResumeName))
+        {          
+            if (!string.IsNullOrEmpty(ResumeName))
             {
-                _resumeService.CreateResume(ResumeName, UserId);
+                _resumeService.CreateResume(ResumeName, UserId, PersonalInfo);
             }
         }
+
+        
     }
 }

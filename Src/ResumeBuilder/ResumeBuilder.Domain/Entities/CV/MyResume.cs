@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ResumeBuilder.Domain.Entities.CV
 {
@@ -11,7 +10,7 @@ namespace ResumeBuilder.Domain.Entities.CV
         public DateTime ResumeCreateDate { get; set; }
         public Guid UserId { get; set; }
         public Guid TemplateId { get; set; }
-        public virtual PersonalInfo PersonalInfo { get; set; }
+        public virtual PersonalInfo? PersonalInfo { get; set; } 
 
     }
 }

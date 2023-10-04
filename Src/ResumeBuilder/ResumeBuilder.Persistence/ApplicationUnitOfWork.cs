@@ -10,14 +10,16 @@ namespace ResumeBuilder.Persistence
         public IApplicantRepository Applicants { get; private set; }
         public IEducationRepository Educations { get; private set; }
         public IResumeRepository Resumes { get; private set; }
+        public IPersonalInfoRepository PersonalInfos { get; private set; }
         public ApplicationUnitOfWork(IApplicationDbContext dbContext,
             IApplicantRepository applicantRepository, IEducationRepository educationRepository,
-            IResumeRepository resumeRepository
+            IResumeRepository resumeRepository, IPersonalInfoRepository personalInfoRepository
             ) : base((DbContext) dbContext)
         {
             Applicants = applicantRepository;
             Educations = educationRepository;
             Resumes = resumeRepository;
+            PersonalInfos = personalInfoRepository;
         }  
     }
 }

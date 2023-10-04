@@ -5,7 +5,9 @@ namespace ResumeBuilder.Application.Features.Resume.Services
 {
     public interface IResumeService
     {
-        void CreateResume(string resumeName, Guid? UserId);
+        void CreateResume(string resumeName, Guid? UserId, PersonalInfo personalInfo);
         IList<MyResume> GetAllResumes();
+        PersonalInfo GetResume(Guid id);
+       
     }
 }

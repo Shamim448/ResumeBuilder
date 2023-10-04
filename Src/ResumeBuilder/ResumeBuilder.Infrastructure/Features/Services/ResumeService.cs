@@ -17,17 +17,25 @@ namespace ResumeBuilder.Infrastructure.Features.Services
             
         }
         //Create Resume
-        public void CreateResume(string resumeName, Guid? UserId)
+        public void CreateResume(string resumeName, Guid? UserId, PersonalInfo personalInfo)
         {
             MyResume myResume = new MyResume()
             { 
                 ResumeName = resumeName,
                 ResumeCreateDate = DateTime.Now,
                 TemplateId = Guid.NewGuid(),
-                UserId = (Guid)UserId
-                
+                UserId = (Guid)UserId,             
             };
-
+            var personal = new PersonalInfo()
+            {
+                Name = personalInfo.Name,
+                Email = personalInfo.Email,
+                Phone = personalInfo.Phone,
+                Address = personalInfo.Address,
+                PhotoUrl = personalInfo.PhotoUrl,
+                Resume = myResume
+            };
+            myResume.PersonalInfo = personal;
             _unitOfWork.Resumes.Add(myResume);
             _unitOfWork.Save();
         }
@@ -36,5 +44,12 @@ namespace ResumeBuilder.Infrastructure.Features.Services
         {
             return _unitOfWork.Resumes.GetAll();
         }
+
+        public PersonalInfo GetResume(Guid id)
+        {
+            return _unitOfWork.PersonalInfos.GetById(id);            
+        }
+
+        
     }
 }

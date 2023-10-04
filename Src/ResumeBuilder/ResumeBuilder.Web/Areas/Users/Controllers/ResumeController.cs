@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ResumeBuilder.Persistence;
@@ -41,11 +40,18 @@ namespace ResumeBuilder.Web.Areas.Users.Controllers
             model.ResolveDependency(_scope);
             var userid = _userManager.GetUserId(HttpContext.User);
             model.UserId = new Guid(userid);
+                       
             if (ModelState.IsValid)
-            {
+            {               
                 model.CreateAResume();
             }            
-           return RedirectToAction("Index", "Home");    
+           return RedirectToAction("Index", "resume");    
+        }
+
+        public IActionResult Details(Guid id) {
+            var model = _scope.Resolve<ResumeListModel>();
+            model.ViewResume(id);
+            return View(model);
         }
 
         public IActionResult ResumeBuilder()
