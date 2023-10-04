@@ -10,10 +10,11 @@ namespace ResumeBuilder.Domain.Entities.CV
 {
     public class PersonalInfo:IEntity<Guid>
     {
-        [Key]
-        public Guid Id { get; set; }
+        
         [ForeignKey("MyResume")]
-        public Guid ResumeId { get; set; }
+        public Guid Id { get; set; }
+        //[ForeignKey("MyResume")]
+        //public Guid ResumeId { get; set; }
         public virtual MyResume? Resume { get; set; }
 
         public string Name { get; set; }

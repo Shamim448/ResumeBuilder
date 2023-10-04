@@ -34,6 +34,11 @@ namespace ResumeBuilder.Persistence
 
         protected override void OnModelCreating(ModelBuilder optionsBuilder)
         {
+            optionsBuilder.Entity<MyResume>()
+               .HasOne(m => m.PersonalInfo)
+               .WithOne(p => p.Resume)
+               .HasForeignKey<PersonalInfo>(p => p.Id)
+               .IsRequired();
             base.OnModelCreating(optionsBuilder);
         }
         public DbSet<Applicant> Applicants { get ; set ; }

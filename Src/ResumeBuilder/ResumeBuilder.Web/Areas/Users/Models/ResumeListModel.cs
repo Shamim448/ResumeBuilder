@@ -36,11 +36,12 @@ namespace ResumeBuilder.Web.Areas.Users.Models
         }
 
         //Return single Resume
-        internal PersonalInfo ViewResume(Guid id)
+        internal MyResume ViewResume(Guid id)
         {
-            PersonalInfo personalInfo = _resumeService.GetResume(id);
-            
-            return personalInfo;
+            MyResume resume = _resumeService.GetResume(id);
+            ResumeName = resume.ResumeName;
+            PersonalInfo = resume.PersonalInfo;
+            return resume;
         }
     }
 }

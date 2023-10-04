@@ -7,7 +7,7 @@ namespace ResumeBuilder.Application.Features.Resume.Services
     {
         void CreateResume(string resumeName, Guid? UserId, PersonalInfo personalInfo);
         IList<MyResume> GetAllResumes();
-        PersonalInfo GetResume(Guid id);
+        MyResume GetResume(Guid id);
        
     }
 }

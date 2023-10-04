@@ -45,9 +45,12 @@ namespace ResumeBuilder.Infrastructure.Features.Services
             return _unitOfWork.Resumes.GetAll();
         }
 
-        public PersonalInfo GetResume(Guid id)
+        public MyResume GetResume(Guid id)
         {
-            return _unitOfWork.PersonalInfos.GetById(id);            
+            var result = _unitOfWork.Resumes.GetById(id);
+            result.PersonalInfo = _unitOfWork.PersonalInfos.GetById(id); 
+            
+            return result;
         }
 
         
